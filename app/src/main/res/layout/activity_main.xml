@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Spec Build (Variant D) — 1280×720dp landscape
+    3 horizontal bands: Status Bar (44dp) | Song List (2/3) | Transport Bar (1/3)
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="TooManyViews">
+
+    <!-- ═══════════════════════════════════════════════════
+         MAIN 3-BAND LAYOUT
+         ═══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- ─── BAND 1: Status Bar (44dp) ─── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="12dp"
+            android:gravity="center_vertical"
+            android:background="@color/status_bar_bg">
+
+            <!-- Left: USB icon + label + dot + drive name + dot + track count -->
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_usb"
+                android:alpha="0.75"
+                android:contentDescription="@string/cd_usb_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/label_usb_source"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:text="@string/separator_dot"
+                android:textColor="@color/text_tertiary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_usb_drive"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:text="@string/separator_dot"
+                android:textColor="@color/text_tertiary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTrackCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Right: Date + Clock + Settings button -->
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/tvClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="8dp" />
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_settings"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                android:alpha="0.9"
+                android:contentDescription="@string/cd_settings" />
+        </LinearLayout>
+
+        <!-- Status bar bottom border -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <!-- ─── BAND 2: Song List (2/3 of remaining height) ─── -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/background">
+
+            <!-- Sticky column header -->
+            <LinearLayout
+                android:id="@+id/columnHeader"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:gravity="center_vertical"
+                android:background="@color/background">
+
+                <!-- # column (60dp) -->
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/col_track_number"
+                    android:textColor="#66FFFFFF"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Art column (56dp) -->
+                <View
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent" />
+
+                <!-- Title column (flex) -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/col_title"
+                    android:textColor="#66FFFFFF"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Format column (80dp) -->
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/col_format"
+                    android:textColor="#66FFFFFF"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Duration column (80dp) -->
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|end"
+                    android:text="@string/col_time"
+                    android:textColor="#66FFFFFF"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+
+            <!-- Header bottom border -->
+            <View
+                android:id="@+id/columnHeaderDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/columnHeader"
+                android:background="@color/divider" />
+
+            <!-- Song list RecyclerView — fills remaining space below header+divider -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvQueue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/columnHeaderDivider"
+                android:clipToPadding="false" />
+        </RelativeLayout>
+
+        <!-- Transport bar top border -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <!-- ─── BAND 3: Transport Bar (1/3 of remaining height) ─── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@color/transport_bar_bg"
+            tools:ignore="NestedWeights">
+
+            <!-- LEFT column: Now Playing info (240dp) -->
+            <LinearLayout
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="20dp">
+
+                <!-- Album art 64×64dp radius 8dp -->
+                <ImageView
+                    android:id="@+id/ivMiniAlbumArt"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/bg_album_art_large"
+                    android:contentDescription="@string/cd_album_art" />
+
+                <!-- Title + Artist -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMiniTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-bold"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+
+                    <TextView
+                        android:id="@+id/tvMiniArtist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Vertical divider -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider" />
+
+            <!-- CENTER column: Controls + Scrubber (flex) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="12dp"
+                android:gravity="center_horizontal">
+
+                <!-- Transport buttons row (86dp tall) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="86dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Shuffle (weight 1) -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/btnShuffle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_shuffle"
+                            android:background="@drawable/bg_dim_button"
+                            android:scaleType="centerInside"
+                            android:padding="12dp"
+                            android:stateListAnimator="@null"
+                            android:contentDescription="@string/cd_shuffle" />
+
+                        <TextView
+                            android:id="@+id/tvShuffleOn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="2dp"
+                            android:text="@string/badge_on"
+                            android:textSize="8sp"
+                            android:textColor="@color/accent"
+                            android:fontFamily="sans-serif-bold"
+                            android:paddingStart="3dp"
+                            android:paddingEnd="3dp"
+                            android:visibility="gone"
+                            tools:ignore="SmallSp" />
+                    </FrameLayout>
+
+                    <Space android:layout_width="8dp" android:layout_height="1dp" />
+
+                    <!-- Prev (weight 1.5) -->
+                    <ImageButton
+                        android:id="@+id/btnPrev"
+                        android:layout_width="0dp"
+                        android:layout_height="62dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/ic_skip_prev"
+                        android:background="@drawable/bg_dim_button"
+                        android:scaleType="centerInside"
+                        android:padding="10dp"
+                        android:stateListAnimator="@null"
+                        android:contentDescription="@string/cd_prev" />
+
+                    <Space android:layout_width="8dp" android:layout_height="1dp" />
+
+                    <!-- Play/Pause (weight 2) — PRIMARY accent button -->
+                    <ImageButton
+                        android:id="@+id/btnPlayPause"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_pause"
+                        android:background="@drawable/bg_play_button"
+                        android:scaleType="centerInside"
+                        android:padding="16dp"
+                        android:stateListAnimator="@null"
+                        android:contentDescription="@string/cd_play_pause" />
+
+                    <Space android:layout_width="8dp" android:layout_height="1dp" />
+
+                    <!-- Next (weight 1.5) -->
+                    <ImageButton
+                        android:id="@+id/btnNext"
+                        android:layout_width="0dp"
+                        android:layout_height="62dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/ic_skip_next"
+                        android:background="@drawable/bg_dim_button"
+                        android:scaleType="centerInside"
+                        android:padding="10dp"
+                        android:stateListAnimator="@null"
+                        android:contentDescription="@string/cd_next" />
+
+                    <Space android:layout_width="8dp" android:layout_height="1dp" />
+
+                    <!-- Repeat (weight 1) -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:id="@+id/btnRepeat"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_repeat"
+                            android:background="@drawable/bg_dim_button"
+                            android:scaleType="centerInside"
+                            android:padding="12dp"
+                            android:stateListAnimator="@null"
+                            android:contentDescription="@string/cd_repeat" />
+
+                        <TextView
+                            android:id="@+id/tvRepeatOn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="2dp"
+                            android:text="@string/badge_all"
+                            android:textSize="8sp"
+                            android:textColor="@color/accent"
+                            android:fontFamily="sans-serif-bold"
+                            android:paddingStart="3dp"
+                            android:paddingEnd="3dp"
+                            android:visibility="gone"
+                            tools:ignore="SmallSp" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- Scrubber row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/tvTimeElapsed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_zero"
+                        android:textColor="#A6FFFFFF"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginEnd="8dp" />
+
+                    <SeekBar
+                        android:id="@+id/seekbarProgress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:progressDrawable="@drawable/seekbar_progress"
+                        android:thumb="@drawable/seekbar_thumb"
+                        android:max="100"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp" />
+
+                    <TextView
+                        android:id="@+id/tvTimeRemaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time_zero_remaining"
+                        android:textColor="#A6FFFFFF"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Vertical divider -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider" />
+
+            <!-- RIGHT column: Up Next (240dp) -->
+            <RelativeLayout
+                android:layout_width="240dp"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="8dp">
+
+                <!-- "Up Next" header -->
+                <LinearLayout
+                    android:id="@+id/upNextHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_queue"
+                        android:alpha="0.7"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/section_up_next"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.1" />
+                </LinearLayout>
+
+                <!-- Up Next 3 items — fills remaining space below header -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvUpNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/upNextHeader"
+                    android:nestedScrollingEnabled="false" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════
+         SETTINGS BOTTOM SHEET OVERLAY
+         ═══════════════════════════════════════════════════ -->
+    <FrameLayout
+        android:id="@+id/settingsSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@drawable/bg_settings_sheet"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="28dp">
+
+            <!-- Header row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-bold" />
+
+                <Button
+                    android:id="@+id/btnSettingsClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_done"
+                    android:textColor="@color/accent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:stateListAnimator="@null" />
+            </LinearLayout>
+
+            <!-- Storage volume section label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/section_storage"
+                android:textColor="@color/text_tertiary"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Volume option buttons -->
+            <LinearLayout
+                android:id="@+id/llVolumeButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Library scan section label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/section_library"
+                android:textColor="@color/text_tertiary"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Scan stats + scan button row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCurrentFolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/storage_all"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/tvScanStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/scan_status_not_scanned"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnScanNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/btn_scan_now"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif-bold"
+                    android:background="@drawable/bg_scan_button"
+                    android:stateListAnimator="@null" />
+            </LinearLayout>
+
+            <!-- Recently played section label -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/section_recently_played"
+                android:textColor="@color/text_tertiary"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/llRecentlyPlayed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

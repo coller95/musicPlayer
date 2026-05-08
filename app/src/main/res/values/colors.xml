@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spec Build (Variant D) Design Tokens -->
+    <color name="background">#0E0F12</color>
+    <color name="transport_bar_bg">#06070A</color>
+    <color name="status_bar_bg">#0A0B0E</color>
+    <color name="accent">#FF7A1A</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <color name="text_tertiary">#66FFFFFF</color>
+    <color name="icon_inactive">#99FFFFFF</color>
+    <color name="divider">#0FFFFFFF</color>
+</resources>

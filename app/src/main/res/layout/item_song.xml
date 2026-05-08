@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Spec Build song row — 5 columns:
+    # (60dp) | Art (56dp) | Title+Artist (1fr weight) | Format (80dp) | Duration (80dp)
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:minHeight="72dp"
+    android:background="?attr/selectableItemBackground"
+    tools:ignore="Overdraw">
+
+    <!-- Left accent bar (5dp wide, visible only when current) -->
+    <View
+        android:id="@+id/viewNowPlayingBar"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/accent"
+        android:visibility="invisible" />
+
+    <!-- # (track number): 60dp total, bar is part of it so 55dp remaining -->
+    <TextView
+        android:id="@+id/tvTrackNumber"
+        android:layout_width="55dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="#80FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-bold" />
+
+    <!-- Album art: 48×48dp, cornerRadius 6dp via background -->
+    <ImageView
+        android:id="@+id/ivQueueAlbumArt"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/bg_album_art"
+        android:contentDescription="@null" />
+
+    <!-- Title + Artist: flex -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:id="@+id/tvQueueTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.01"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvQueueArtist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="#CCFFFFFF"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- Format badge: 80dp column, centered -->
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvQueueFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:fontWeight="700"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:background="@drawable/bg_format_badge" />
+    </FrameLayout>
+
+    <!-- Duration: 80dp, right-aligned -->
+    <TextView
+        android:id="@+id/tvQueueDuration"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|end"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
+        android:textColor="#B3FFFFFF"
+        android:textSize="15sp"
+        android:fontFamily="monospace" />
+
+</LinearLayout>
