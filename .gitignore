@@ -16,6 +16,7 @@ local.properties
 
 # Release artifacts (built APKs, baseline profiles)
 app/release/
+dist/
 
 # OS
 .DS_Store
