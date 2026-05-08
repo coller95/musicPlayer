@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local config
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Keystore (add back explicitly if you want to track release signing)
+*.keystore
+*.jks
+
+# Release artifacts (built APKs, baseline profiles)
+app/release/
+
+# OS
+.DS_Store
+Thumbs.db
